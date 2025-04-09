@@ -1,1 +1,8 @@
 ARIMA vs LSTM vs Model simples
+
+
+Perguntas:
+
+O arima faz sentido aplicar a todos os edificios, escolher uma categroia de casas, ao site id
+
+na back propagation faz sentido retirar o id da casa
