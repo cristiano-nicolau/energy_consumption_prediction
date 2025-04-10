@@ -5,4 +5,4 @@ Perguntas:
 
 O arima faz sentido aplicar a todos os edificios, escolher uma categroia de casas, ao site id
 
-na back propagation faz sentido retirar o id da casa
+na back propagation faz sentido retirar o id da casa e o site id, alem disso faz mais sentido aplicar o modelo a aos todos edificios, ou por site id ou por edificio
