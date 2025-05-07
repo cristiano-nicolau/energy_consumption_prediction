@@ -1,0 +1,55 @@
+\section{Introduction}
+\label{sec:Introduction}
+Energy consumption prediction represents a critical domain within data science and machine learning, serving as a foundation for numerous applications including building management systems, energy grid optimization, sustainability planning, and cost-efficient facility operations. Unlike simpler prediction tasks, energy consumption forecasting requires analysis of complex, interconnected factors including temporal patterns, environmental conditions, and building-specific characteristics, making it a challenging yet impactful area of research.
+
+This technical report addresses three primary objectives. First, it offers a focused adaptation of the ASHRAE Energy Prediction competition dataset, specifically filtering and transforming the original data to concentrate exclusively on energy consumption prediction. Second, it develops, optimizes, and evaluates various machine learning architectures to accurately forecast building energy usage patterns across diverse building types and operational conditions. Third, it provides a comprehensive comparative analysis between our proposed approaches and existing studies in the field of energy consumption prediction, contextualizing our results within the broader research landscape and highlighting key methodological differences and performance improvements.
+
+Our study leverages a refined subset of the ASHRAE Great Energy Predictor III competition dataset \cite{ashrae-energy-prediction}, which originally contained measurements from over 1,000 buildings. By isolating the energy consumption variables and their relevant features, we create a specialized dataset that allows for more targeted analysis of energy consumption patterns. This approach poses a challenging regression problem that accounts for multiple influencing factors including weather conditions, building metadata, and temporal features.
+
+The report details the effectiveness of different machine learning approaches in accurately predicting energy consumption values, with particular attention to performance metrics relevant to energy forecasting applications. The document concludes with a comprehensive comparative analysis of model performance and presents key insights derived from the experiments, contributing to the ongoing development of robust and scalable energy prediction systems for building management and energy efficiency applications.
+
+\section{State of the Art} \label{sec}
+A comprehensive state-of-the-art review was performed to find the most suitable models for application to this energy prediction dataset and identify the types of studies that had already been conducted.
+
+\subsection{Traditional Machine Learning Approaches}
+Before the widespread adoption of deep learning for time series prediction, traditional machine learning algorithms demonstrated considerable effectiveness in energy consumption forecasting. Random Forests have proven particularly valuable in this domain due to their ability to handle non-linear relationships and feature importance ranking. For example, \cite{ahmad2017random} demonstrated the effectiveness of Random Forests in predicting building energy consumption, while \cite{wang2018random} highlighted their robustness against overfitting when handling various building types and operational conditions.
+
+Despite their impact, these approaches often struggle with capturing long-term temporal dependencies in energy consumption patterns, especially when seasonal variations and complex building usage patterns are present. This limitation has encouraged exploration of more sophisticated time series modeling techniques.
+
+\subsection{Statistical Time Series Models}
+ARIMA (Autoregressive Integrated Moving Average) and its seasonal variant SARIMA have been foundational in energy consumption prediction. These statistical models explicitly account for trends, seasonality, and temporal correlations in time series data. \cite{chujai2013time} demonstrated ARIMA's effectiveness for short-term electricity consumption forecasting, while \cite{Camara2016} showed how SARIMA models could capture both daily and seasonal patterns in building energy usage, comparing with the use of an Neural Network.
+
+These methods provide interpretable frameworks for time series analysis but may fall short when handling multiple exogenous variables such as weather conditions and building metadata that significantly influence energy consumption patterns.
+
+\subsection{Recurrent Neural Networks (RNNs) and Artificial Neural Networks (ANNs)}
+Artificial Neural Networks (ANNs) have been widely used in energy forecasting due to their ability to capture complex, non-linear relationships in data. One of the most common types of ANNs is the Backpropagation Neural Network (BPNN), which has been successfully applied in load forecasting. For instance, \cite{kong2019short} demonstrated that BPNNs can achieve high accuracy in predicting energy consumption patterns when trained with sufficient historical data.
+
+Recurrent Neural Networks (RNNs), on the other hand, extend traditional ANNs by incorporating internal memory states, making them particularly suitable for sequential data processing. However, standard RNNs struggle with long-term dependencies due to the vanishing gradient problem. To address this, advanced architectures such as Long Short-Term Memory (LSTM) networks have been proposed. 
+\subsection{Long Short-Term Memory Networks (LSTMs)}
+Long Short-Term Memory (LSTM) networks enhance traditional RNNs by introducing specialized gating mechanisms that regulate information flow, mitigating issues like vanishing gradients. These architectures are particularly effective in capturing both short-term fluctuations and long-term dependencies in time-series data.
+
+LSTMs have demonstrated superior performance in energy forecasting applications. For instance, \cite{kong2019short} highlighted their effectiveness in short-term building energy consumption prediction, showing that LSTMs outperform conventional machine learning models. Additionally, \cite{kim2019predicting} illustrated how integrating weather data and temporal features into LSTM models significantly improves prediction accuracy. Furthermore, \cite{siami2018performance} confirmed that LSTM-based approaches consistently surpass traditional statistical methods in capturing complex temporal dependencies.
+
+The capability of LSTMs to process multiple interdependent factors while maintaining temporal coherence makes them particularly well-suited for energy prediction tasks, where consumption patterns are influenced by dynamic and context-dependent variables.
+
+\subsection{Feature Engineering and Preprocessing}
+Feature engineering is a crucial step in energy consumption prediction, as it enhances model performance by capturing meaningful patterns and relationships within the data. Temporal features, such as the hour of the day, day of the week, and seasonal indicators, help identify recurring consumption trends and cyclical variations in energy usage \cite{deb2017review}. Weather normalization techniques adjust for the influence of external conditions, including temperature and humidity, ensuring that variations in energy consumption due to climate fluctuations are accounted for \cite{gao2018data}. 
+
+Miller et al. \cite{miller2020ashrae} revealed that top-performing solutions in the ASHRAE Great Energy Predictor III competition heavily relied on sophisticated feature engineering approaches, including the creation of lag features capturing previous energy usage patterns, rolling window statistics, and derived features quantifying building operational states. The competition results demonstrated that models incorporating these engineered features achieved up to 21\% improvement in prediction accuracy compared to baseline approaches using only raw features. By implementing these advanced feature engineering techniques, our models can better capture complex non-linear relationships between environmental conditions, building characteristics, and energy consumption patterns, leading to more accurate and robust predictions across diverse building types and operational scenarios.
+
+Proper preprocessing and feature engineering not only enhance model performance but also improve interpretability, allowing for more actionable insights in energy management applications.
+
+
+\section{Related Work}
+
+To contextualize our results, we compare them with recent studies in energy consumption forecasting. These works use a variety of approaches, from traditional machine learning to advanced deep learning models, providing useful benchmarks.
+
+\begin{itemize}
+    \item \textbf{Kong et al. (2019)}~\cite{kong2019short} employed LSTM-based recurrent neural networks for short-term residential load forecasting. Their work offers a relevant comparison for our LSTM-based models. Despite differences in dataset and scope, our results show similar or slightly improved performance.
+    
+    \item \textbf{Ahmad et al. (2017)}~\cite{ahmad2017random} used Random Forests and Artificial Neural Networks to predict daylight illuminance and energy use. Their ANN model serves as a baseline for evaluating our feedforward networks, which outperformed their results in terms of MAE and R².
+    
+    \item \textbf{Dinh et al. (2023)}~\cite{khan2024image} proposed a multivariate LSTM model for commercial building energy forecasting. Our grouped multi-input model achieves comparable or better results on the test set, particularly in terms of generalization.
+\end{itemize}
+
+A detailed comparison of our results with these works is presented in the final section, where we analyze the relative performance of each approach under different modeling strategies and evaluation metrics.
