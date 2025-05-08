@@ -45,8 +45,8 @@ The primary goal is to develop a predictive model capable of estimating **energy
 Key steps include:
 - **Data exploration and cleaning** (handling missing values and outliers)
 - **Feature selection** to identify relevant predictors
-- **Training predictive models** (e.g., linear regression, XGBoost, neural networks)
-- **Model performance evaluation** using metrics such as RMSLE (Root Mean Squared Log Error)
+- **Training predictive models** (Random Forest,  FNN, LSTM)
+- **Model performance evaluation** using metrics such as RMSLE, MSE, MAE, R2
 
 ## References
 - [ASHRAE Competition on Kaggle](https://www.kaggle.com/competitions/ashrae-energy-prediction/overview)
